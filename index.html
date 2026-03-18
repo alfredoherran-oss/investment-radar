@@ -44,58 +44,28 @@
     .tagline { font-size: 0.85rem; color: var(--muted); }
 
     /* ── Layout ── */
-    .container { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+    .container { max-width: 940px; margin: 0 auto; padding: 32px 20px 60px; }
 
-    /* ── Search card ── */
-    .search-card {
+    /* ── Filter card ── */
+    .filter-card {
       background: white;
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 24px 26px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       margin-bottom: 24px;
     }
 
-    .search-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      margin-bottom: 22px;
     }
 
-    .search-input {
-      flex: 1;
-      padding: 13px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      color: var(--text);
+    @media (max-width: 680px) {
+      .filter-grid { grid-template-columns: 1fr; }
     }
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
-    }
-    .search-input::placeholder { color: #b0bec5; }
-
-    .search-btn {
-      padding: 13px 26px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-    }
-    .search-btn:hover:not(:disabled) { background: var(--primary-dark); }
-    .search-btn:active:not(:disabled) { transform: scale(0.97); }
-    .search-btn:disabled { opacity: 0.55; cursor: not-allowed; }
-
-    /* ── Filters ── */
-    .filters { display: flex; gap: 28px; flex-wrap: wrap; }
 
     .filter-group {}
     .filter-label {
@@ -104,13 +74,13 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.07em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pills { display: flex; gap: 7px; flex-wrap: wrap; }
 
     .pill {
-      padding: 6px 15px;
+      padding: 7px 16px;
       border: 1.5px solid var(--border);
       border-radius: 20px;
       font-size: 0.83rem;
@@ -121,35 +91,37 @@
       font-weight: 500;
       user-select: none;
     }
-    .pill:hover { border-color: var(--primary); color: var(--primary); }
+    .pill:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
     .pill.active {
       background: var(--primary);
       border-color: var(--primary);
       color: white;
     }
 
-    /* ── Suggestions ── */
-    .suggestions {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
+    /* ── Search button ── */
+    .search-footer {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
     }
-    .suggestions-label { font-size: 0.8rem; color: var(--muted); }
-    .suggestion-chip {
-      padding: 4px 12px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: var(--text);
+
+    .search-btn {
+      padding: 13px 36px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.01em;
     }
-    .suggestion-chip:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+    .search-btn:hover:not(:disabled) { background: var(--primary-dark); }
+    .search-btn:active:not(:disabled) { transform: scale(0.97); }
+    .search-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
     /* ── Results ── */
     .results-header {
@@ -192,7 +164,7 @@
       line-height: 1.45;
       color: var(--text);
     }
-    .card-tags { display: flex; gap: 5px; flex-shrink: 0; }
+    .card-tags { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
 
     .tag {
       padding: 3px 10px;
@@ -236,16 +208,16 @@
     /* ── States ── */
     .state-box {
       text-align: center;
-      padding: 70px 20px;
+      padding: 80px 20px;
       color: var(--muted);
     }
     .state-icon { font-size: 3.5rem; margin-bottom: 16px; }
     .state-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
     .state-sub { font-size: 0.9rem; }
 
-    .spinner-wrap { text-align: center; padding: 60px 20px; }
+    .spinner-wrap { text-align: center; padding: 70px 20px; }
     .spinner {
-      width: 40px; height: 40px;
+      width: 42px; height: 42px;
       border: 3px solid var(--border);
       border-top-color: var(--primary);
       border-radius: 50%;
@@ -265,12 +237,15 @@
       font-size: 0.9rem;
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 560px) {
-      .search-row { flex-direction: column; }
-      .card-top { flex-direction: column; }
-      .filters { gap: 16px; }
+    /* ── Welcome state ── */
+    .welcome-box {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
     }
+    .welcome-icon { font-size: 4rem; margin-bottom: 18px; }
+    .welcome-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .welcome-sub { font-size: 0.92rem; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -284,111 +259,154 @@
 
 <div class="container">
 
-  <div class="search-card">
-    <div class="search-row">
-      <input
-        type="text"
-        id="searchInput"
-        class="search-input"
-        placeholder="Filter by industry, location or keyword (e.g. fintech, London, AI…)"
-      />
-      <button class="search-btn" id="searchBtn" onclick="doSearch()">Search</button>
-    </div>
+  <div class="filter-card">
+    <div class="filter-grid">
 
-    <div class="filters">
+      <!-- Date Range -->
       <div class="filter-group">
-        <div class="filter-label">Date Range</div>
+        <div class="filter-label">📅 Date Range</div>
         <div class="pills" id="datePills">
-          <button class="pill active" onclick="setDate(this,7)">Last 7 days</button>
-          <button class="pill" onclick="setDate(this,30)">Last 30 days</button>
-          <button class="pill" onclick="setDate(this,90)">Last 90 days</button>
-          <button class="pill" onclick="setDate(this,0)">Any time</button>
+          <button class="pill active" onclick="setFilter('date', this, '7')">Last 7 days</button>
+          <button class="pill" onclick="setFilter('date', this, '30')">Last 30 days</button>
+          <button class="pill" onclick="setFilter('date', this, '90')">Last 90 days</button>
+          <button class="pill" onclick="setFilter('date', this, '0')">Any time</button>
         </div>
       </div>
 
+      <!-- Round Stage -->
       <div class="filter-group">
-        <div class="filter-label">Round Stage</div>
+        <div class="filter-label">🚀 Round Stage</div>
         <div class="pills" id="stagePills">
-          <button class="pill active" onclick="setStage(this,'all')">All stages</button>
-          <button class="pill" onclick="setStage(this,'seed')">Seed / Pre-seed</button>
-          <button class="pill" onclick="setStage(this,'a')">Series A</button>
-          <button class="pill" onclick="setStage(this,'b')">Series B / C</button>
-          <button class="pill" onclick="setStage(this,'late')">Series D+</button>
+          <button class="pill active" onclick="setFilter('stage', this, 'all')">All stages</button>
+          <button class="pill" onclick="setFilter('stage', this, 'seed')">Seed / Pre-seed</button>
+          <button class="pill" onclick="setFilter('stage', this, 'a')">Series A</button>
+          <button class="pill" onclick="setFilter('stage', this, 'b')">Series B / C</button>
+          <button class="pill" onclick="setFilter('stage', this, 'late')">Series D+</button>
         </div>
       </div>
+
+      <!-- Region -->
+      <div class="filter-group">
+        <div class="filter-label">🌍 Region</div>
+        <div class="pills" id="regionPills">
+          <button class="pill active" onclick="setFilter('region', this, 'all')">All regions</button>
+          <button class="pill" onclick="setFilter('region', this, 'north-america')">North America</button>
+          <button class="pill" onclick="setFilter('region', this, 'europe')">Europe</button>
+          <button class="pill" onclick="setFilter('region', this, 'latam')">Latin America</button>
+          <button class="pill" onclick="setFilter('region', this, 'asia')">Asia Pacific</button>
+          <button class="pill" onclick="setFilter('region', this, 'mea')">Middle East & Africa</button>
+        </div>
+      </div>
+
+      <!-- Industry -->
+      <div class="filter-group">
+        <div class="filter-label">🏭 Industry</div>
+        <div class="pills" id="industryPills">
+          <button class="pill active" onclick="setFilter('industry', this, 'all')">All industries</button>
+          <button class="pill" onclick="setFilter('industry', this, 'fintech')">Fintech</button>
+          <button class="pill" onclick="setFilter('industry', this, 'ai')">AI / ML</button>
+          <button class="pill" onclick="setFilter('industry', this, 'healthtech')">Healthtech</button>
+          <button class="pill" onclick="setFilter('industry', this, 'climate')">Climate Tech</button>
+          <button class="pill" onclick="setFilter('industry', this, 'saas')">SaaS / B2B</button>
+          <button class="pill" onclick="setFilter('industry', this, 'ecommerce')">E-commerce</button>
+          <button class="pill" onclick="setFilter('industry', this, 'edtech')">Edtech</button>
+          <button class="pill" onclick="setFilter('industry', this, 'cybersecurity')">Cybersecurity</button>
+          <button class="pill" onclick="setFilter('industry', this, 'biotech')">Biotech</button>
+          <button class="pill" onclick="setFilter('industry', this, 'proptech')">Proptech</button>
+        </div>
+      </div>
+
     </div>
 
-    <div class="suggestions">
-      <span class="suggestions-label">Try:</span>
-      <span class="suggestion-chip" onclick="setKeyword('fintech')">fintech</span>
-      <span class="suggestion-chip" onclick="setKeyword('AI startup')">AI startup</span>
-      <span class="suggestion-chip" onclick="setKeyword('healthtech')">healthtech</span>
-      <span class="suggestion-chip" onclick="setKeyword('climate tech')">climate tech</span>
-      <span class="suggestion-chip" onclick="setKeyword('SaaS')">SaaS</span>
-      <span class="suggestion-chip" onclick="setKeyword('London')">London</span>
-      <span class="suggestion-chip" onclick="setKeyword('Latin America')">Latin America</span>
+    <div class="search-footer">
+      <button class="search-btn" id="searchBtn" onclick="doSearch()">Search</button>
     </div>
   </div>
 
   <div id="errorBox" class="error-box" style="display:none"></div>
-  <div id="resultsArea"></div>
+  <div id="resultsArea">
+    <div class="welcome-box">
+      <div class="welcome-icon">📡</div>
+      <div class="welcome-title">Ready to search</div>
+      <div class="welcome-sub">Select your filters above and hit <strong>Search</strong><br>to discover the latest funding announcements.</div>
+    </div>
+  </div>
 
 </div>
 
 <script>
   const PROXY = 'https://api.allorigins.win/raw?url=';
 
-  let selectedDays  = 7;
-  let selectedStage = 'all';
-  let allItems      = [];
+  const filters = {
+    date:     '7',
+    stage:    'all',
+    region:   'all',
+    industry: 'all',
+  };
 
-  /* ── Filter state ── */
-  function setDate(el, days) {
-    document.querySelectorAll('#datePills .pill').forEach(p => p.classList.remove('active'));
+  let allItems = [];
+
+  /* ── Set a filter ── */
+  function setFilter(type, el, value) {
+    const groupIds = { date: 'datePills', stage: 'stagePills', region: 'regionPills', industry: 'industryPills' };
+    document.querySelectorAll(`#${groupIds[type]} .pill`).forEach(p => p.classList.remove('active'));
     el.classList.add('active');
-    selectedDays = days;
-    filterAndRender();
+    filters[type] = value;
   }
 
-  function setStage(el, stage) {
-    document.querySelectorAll('#stagePills .pill').forEach(p => p.classList.remove('active'));
-    el.classList.add('active');
-    selectedStage = stage;
-    doSearch();
-  }
-
-  function setKeyword(kw) {
-    document.getElementById('searchInput').value = kw;
-    doSearch();
-  }
-
-  /* ── Build RSS query ── */
-  function buildQuery(keyword) {
-    const stageMap = {
+  /* ── Build RSS search query ── */
+  function buildQuery() {
+    const stageParts = {
       all:  '"funding round" OR "series A" OR "series B" OR "series C" OR "seed round" OR "pre-seed" OR "raises" OR "secures funding" OR "closes round"',
       seed: '"seed round" OR "pre-seed" OR "seed funding" OR "seed investment" OR "angel round"',
-      a:    '"series A" OR "series A round" OR "series A funding" OR "series A investment"',
+      a:    '"series A" OR "series A round" OR "series A funding"',
       b:    '"series B" OR "series C" OR "series B round" OR "series C round"',
       late: '"series D" OR "series E" OR "series F" OR "late stage" OR "growth round"',
     };
-    const base = stageMap[selectedStage] || stageMap.all;
-    return keyword ? `(${base}) "${keyword}"` : base;
+
+    const regionParts = {
+      all:           '',
+      'north-america': '"United States" OR "US startup" OR "Canada" OR "North America"',
+      europe:        'Europe OR "United Kingdom" OR Germany OR France OR Spain OR Netherlands OR Sweden OR "Nordic"',
+      latam:         '"Latin America" OR Brazil OR Mexico OR Argentina OR Colombia OR Chile OR Peru',
+      asia:          '"Asia Pacific" OR India OR Singapore OR Japan OR "South Korea" OR Indonesia OR Australia',
+      mea:           '"Middle East" OR Africa OR UAE OR "Saudi Arabia" OR Nigeria OR Kenya OR Israel',
+    };
+
+    const industryParts = {
+      all:          '',
+      fintech:      'fintech OR "financial technology" OR neobank OR payments OR insurtech OR wealthtech',
+      ai:           '"artificial intelligence" OR "machine learning" OR AI startup OR LLM OR "generative AI"',
+      healthtech:   'healthtech OR "digital health" OR medtech OR "health startup" OR telemedicine',
+      climate:      '"climate tech" OR cleantech OR "green energy" OR "carbon" OR sustainability OR "renewable"',
+      saas:         'SaaS OR "B2B software" OR "enterprise software" OR "cloud platform"',
+      ecommerce:    'e-commerce OR ecommerce OR "online retail" OR marketplace OR "direct to consumer"',
+      edtech:       'edtech OR "education technology" OR "online learning" OR "learning platform"',
+      cybersecurity: 'cybersecurity OR "cyber security" OR "information security" OR "data security"',
+      biotech:      'biotech OR biotechnology OR "life sciences" OR pharmaceutical OR genomics',
+      proptech:     'proptech OR "real estate tech" OR "property technology" OR "real estate startup"',
+    };
+
+    const parts = [stageParts[filters.stage] || stageParts.all];
+    if (regionParts[filters.region])   parts.push(regionParts[filters.region]);
+    if (industryParts[filters.industry]) parts.push(industryParts[filters.industry]);
+
+    return parts.map(p => `(${p})`).join(' ');
   }
 
   /* ── Parse Google News RSS ── */
   function parseRSS(xml) {
     const doc = new DOMParser().parseFromString(xml, 'text/xml');
     return Array.from(doc.querySelectorAll('item')).map(item => {
-      const raw   = item.querySelector('title')?.textContent || '';
-      const link  = item.querySelector('link')?.textContent || '#';
-      const pub   = item.querySelector('pubDate')?.textContent || '';
-      const desc  = item.querySelector('description')?.textContent || '';
-      const src   = item.querySelector('source')?.textContent || extractHost(link);
+      const raw  = item.querySelector('title')?.textContent || '';
+      const link = item.querySelector('link')?.textContent || '#';
+      const pub  = item.querySelector('pubDate')?.textContent || '';
+      const desc = item.querySelector('description')?.textContent || '';
+      const src  = item.querySelector('source')?.textContent || extractHost(link);
 
-      // Strip " - Source Name" from end of title
-      const title = raw.replace(/\s+[-–]\s+[\w\s&.,']+$/, '').trim();
+      // Strip " - Source Name" suffix from Google News titles
+      const title = raw.replace(/\s+[-–]\s+[\w\s&.,'"]+$/, '').trim();
 
-      // Strip HTML from description
       const tmp = document.createElement('div');
       tmp.innerHTML = desc;
       const cleanDesc = (tmp.textContent || '').trim();
@@ -401,41 +419,39 @@
     try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
   }
 
-  /* ── Detect stage tag from text ── */
+  /* ── Detect stage tag ── */
   function detectTag(text) {
     const t = text.toLowerCase();
-    if (t.match(/pre.?seed/))                             return { label: 'Pre-seed', cls: 'tag-seed' };
-    if (t.match(/seed/))                                  return { label: 'Seed',     cls: 'tag-seed' };
-    if (t.match(/series a/))                              return { label: 'Series A', cls: 'tag-a' };
-    if (t.match(/series b/))                              return { label: 'Series B', cls: 'tag-b' };
-    if (t.match(/series c/))                              return { label: 'Series C', cls: 'tag-b' };
-    if (t.match(/series [def]/))                          return { label: 'Series D+', cls: 'tag-late' };
-    if (t.match(/\bipo\b|initial public offering/))       return { label: 'IPO',      cls: 'tag-ipo' };
-    if (t.match(/raises|raised|funding|investment/))      return { label: 'Funding',  cls: 'tag-default' };
+    if (t.match(/pre.?seed/))                         return { label: 'Pre-seed',  cls: 'tag-seed' };
+    if (t.match(/\bseed\b/))                          return { label: 'Seed',      cls: 'tag-seed' };
+    if (t.match(/series a/))                          return { label: 'Series A',  cls: 'tag-a' };
+    if (t.match(/series b/))                          return { label: 'Series B',  cls: 'tag-b' };
+    if (t.match(/series c/))                          return { label: 'Series C',  cls: 'tag-b' };
+    if (t.match(/series [def]/))                      return { label: 'Series D+', cls: 'tag-late' };
+    if (t.match(/\bipo\b|initial public offering/))   return { label: 'IPO',       cls: 'tag-ipo' };
+    if (t.match(/raises|raised|funding|investment/))  return { label: 'Funding',   cls: 'tag-default' };
     return null;
   }
 
   /* ── Format date ── */
   function fmtDate(d) {
     if (!(d instanceof Date) || isNaN(d)) return 'Recent';
-    const now  = new Date();
-    const diff = Math.floor((now - d) / 86400000);
+    const diff = Math.floor((Date.now() - d) / 86400000);
     if (diff === 0) return 'Today';
     if (diff === 1) return 'Yesterday';
     if (diff < 7)   return `${diff} days ago`;
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
-  /* ── Filter & render ── */
-  function filterAndRender() {
-    const cutoff = selectedDays > 0
-      ? new Date(Date.now() - selectedDays * 86400000)
-      : null;
-
-    const filtered = allItems.filter(it => !cutoff || it.pubDate >= cutoff);
-    renderResults(filtered);
+  /* ── Filter by date client-side ── */
+  function filterByDate(items) {
+    const days = parseInt(filters.date, 10);
+    if (!days) return items;
+    const cutoff = new Date(Date.now() - days * 86400000);
+    return items.filter(it => it.pubDate >= cutoff);
   }
 
+  /* ── Render results ── */
   function renderResults(items) {
     const area = document.getElementById('resultsArea');
 
@@ -444,7 +460,7 @@
         <div class="state-box">
           <div class="state-icon">📭</div>
           <div class="state-title">No announcements found</div>
-          <div class="state-sub">Try broader keywords or a wider date range</div>
+          <div class="state-sub">Try selecting broader filters or a wider date range</div>
         </div>`;
       return;
     }
@@ -455,7 +471,7 @@
       </div>`;
 
     const cards = items.map(it => {
-      const tag   = detectTag(it.title + ' ' + it.description);
+      const tag     = detectTag(it.title + ' ' + it.description);
       const tagHtml = tag ? `<span class="tag ${tag.cls}">${tag.label}</span>` : '';
 
       return `
@@ -467,7 +483,7 @@
           <div class="card-meta">
             ${escHtml(it.source)}<span class="dot">·</span>${fmtDate(it.pubDate)}
           </div>
-          ${it.description ? `<div class="card-desc">${escHtml(it.description.substring(0, 220))}</div>` : ''}
+          ${it.description ? `<div class="card-desc">${escHtml(it.description.substring(0, 240))}</div>` : ''}
           <div class="card-footer">Read full article →</div>
         </a>`;
     }).join('');
@@ -476,15 +492,18 @@
   }
 
   function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
   }
 
   /* ── Main search ── */
   async function doSearch() {
-    const keyword = document.getElementById('searchInput').value.trim();
-    const btn     = document.getElementById('searchBtn');
-    const errBox  = document.getElementById('errorBox');
-    const area    = document.getElementById('resultsArea');
+    const btn    = document.getElementById('searchBtn');
+    const errBox = document.getElementById('errorBox');
+    const area   = document.getElementById('resultsArea');
 
     errBox.style.display = 'none';
     btn.disabled = true;
@@ -497,7 +516,7 @@
       </div>`;
 
     try {
-      const q      = buildQuery(keyword);
+      const q      = buildQuery();
       const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
       const url    = PROXY + encodeURIComponent(rssUrl);
 
@@ -505,18 +524,10 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const text = await res.text();
-      allItems   = parseRSS(text);
+      allItems = parseRSS(text);
 
-      if (allItems.length === 0) {
-        area.innerHTML = `
-          <div class="state-box">
-            <div class="state-icon">🔍</div>
-            <div class="state-title">No results found</div>
-            <div class="state-sub">Try different keywords or select a wider date range</div>
-          </div>`;
-      } else {
-        filterAndRender();
-      }
+      const filtered = filterByDate(allItems);
+      renderResults(filtered);
 
     } catch (err) {
       errBox.textContent = '⚠️  Could not load results — please try again in a moment.';
@@ -528,14 +539,6 @@
       btn.textContent = 'Search';
     }
   }
-
-  /* ── Enter key ── */
-  document.getElementById('searchInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doSearch();
-  });
-
-  /* ── Auto-load on open ── */
-  doSearch();
 </script>
 
 </body>
